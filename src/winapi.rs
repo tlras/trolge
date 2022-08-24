@@ -21,19 +21,11 @@ pub fn set_mouse_position(pos: (i32, i32)) {
     }
 }
 
-pub fn key_down(vk: KeyboardAndMouse::VIRTUAL_KEY) {
+pub fn key_press(vk: KeyboardAndMouse::VIRTUAL_KEY) {
     unsafe {
         KeyboardAndMouse::keybd_event(vk.0 as u8, 0, KeyboardAndMouse::KEYEVENTF_KEYUP, 0);
-    }
-}
-
-pub fn key_up(vk: KeyboardAndMouse::VIRTUAL_KEY) {
-    unsafe {
         KeyboardAndMouse::keybd_event(vk.0 as u8, 0, KeyboardAndMouse::KEYBD_EVENT_FLAGS(0), 0);
     }
-}
-
-pub fn key_press(vk: KeyboardAndMouse::VIRTUAL_KEY) {
     key_up(vk);
     key_down(vk);
 }
