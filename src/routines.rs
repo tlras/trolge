@@ -54,7 +54,7 @@ pub fn windows_noises() {
     loop {
         thread::sleep(time::Duration::from_secs(rand::thread_rng().gen_range(2..=5) * 60));
         winapi::key_press(VK_INSERT);
-        sounds::play_random();
+        sounds::play_win();
     }
 }
 
@@ -68,6 +68,6 @@ pub fn pause_play() {
 pub fn discord_ping() {
     loop {
         thread::sleep(time::Duration::from_secs(rand::thread_rng().gen_range(2..=10) * 60));
-        sounds::play_ping();
+        sounds::play_annoy();
     }
 }

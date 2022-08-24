@@ -2,7 +2,8 @@ use crate::winapi;
 use rand::prelude::SliceRandom;
 
 static PING_SOUND: &'static [u8] = include_bytes!("../data/discord_ping.wav");
-static SOUNDS: [&'static [u8]; 21] = [
+static KASP_SOUND: &'static [u8] = include_bytes!("../data/kaspersky.wav");
+static WIN_SOUNDS: [&'static [u8]; 21] = [
     include_bytes!("../data/windows1.wav"),
     include_bytes!("../data/windows2.wav"),
     include_bytes!("../data/windows3.wav"),
@@ -26,12 +27,16 @@ static SOUNDS: [&'static [u8]; 21] = [
     include_bytes!("../data/windows19.wav")
 ];
 
-pub fn play_random() {
-    if let Some(snd) = SOUNDS.choose(&mut rand::thread_rng()) {
+pub fn play_win() {
+    if let Some(snd) = WIN_SOUNDS.choose(&mut rand::thread_rng()) {
         winapi::play_sound(std::ptr::addr_of!(snd[0]));
     }
 }
 
-pub fn play_ping() {
-    winapi::play_sound(std::ptr::addr_of!(PING_SOUND[0]));
+pub fn play_annoy() {
+    if rand::random() {
+        winapi::play_sound(std::ptr::addr_of!(PING_SOUND[0]));
+    } else {
+        winapi::play_sound(std::ptr::addr_of!(KASP_SOUND[0]));
+    }
 }

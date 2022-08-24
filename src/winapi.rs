@@ -26,8 +26,6 @@ pub fn key_press(vk: KeyboardAndMouse::VIRTUAL_KEY) {
         KeyboardAndMouse::keybd_event(vk.0 as u8, 0, KeyboardAndMouse::KEYEVENTF_KEYUP, 0);
         KeyboardAndMouse::keybd_event(vk.0 as u8, 0, KeyboardAndMouse::KEYBD_EVENT_FLAGS(0), 0);
     }
-    key_up(vk);
-    key_down(vk);
 }
 
 pub fn open_drive() {
