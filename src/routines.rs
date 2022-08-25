@@ -4,13 +4,13 @@ use rand::Rng;
 use crate::winapi;
 use crate::sounds;
 
-pub static THREADS: [fn(); 6] = [
-    keyboard_leds,
-    drive_opener,
-    mouse_wiggler,
-    windows_noises,
-    pause_play,
-    discord_ping
+pub static THREADS: [(fn(), i32); 6] = [
+    (keyboard_leds, 3),
+    (drive_opener, 0),
+    (mouse_wiggler, 3),
+    (windows_noises, 0),
+    (pause_play, 5),
+    (discord_ping, 3),
 ];
 
 pub fn keyboard_leds() {
