@@ -8,8 +8,8 @@ use std::{thread::{self, JoinHandle}};
 
 #[no_mangle]
 fn main(_argc: i32, _argv: *const *const u8) {
-    let intensity = 0;
-    let mut thread_pool = Vec::<JoinHandle<()>>::new(routines::THREADS.len());
+    let mut intensity = 0;
+    let mut thread_pool = Vec::<JoinHandle<()>>::with_capacity(routines::THREADS.len());
     
     loop {
         for i in routines::THREADS {
@@ -20,9 +20,5 @@ fn main(_argc: i32, _argv: *const *const u8) {
 
         thread::sleep(std::time::Duration::from_secs(60));
         intensity += 1;
-    }
-
-    for i in thread_pool {
-        i.join().unwrap();
     }
 }
